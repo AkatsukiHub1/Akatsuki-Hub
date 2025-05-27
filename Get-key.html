@@ -1,170 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Get Key - Akatsuki Hub</title>
-</head>
-<body style="background:#000; color:#ff0000; display:flex; justify-content:center; align-items:center; height:100vh;">
-
-  <div id="app"></div>
-
-  <script>
-    const app = document.getElementById('app');
-    const urlParams = new URLSearchParams(window.location.search);
-    const ref = document.referrer;
-    let siteOK = false;
-
-    if (urlParams.get('site') || ref) {
-      const s = urlParams.get('site') || ref;
-      if (s.includes('lootdest.org')) siteOK = true;
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>Get Key - Akatsuki Hub</title></head><body style="background:#000;color:#f00;display:flex;justify-content:center;align-items:center;height:100vh"><div id="app"></div><script>
+(() => {
+  const a=document.getElementById('app'),p=new URLSearchParams(window.location.search),r=document.referrer;let o=!1;
+  if(p.get('site')||r){const s=p.get('site')||r;s.includes('lootdest.org')&&(o=!0);}
+  if(!o){
+    document.head.innerHTML+=`<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/><style>@keyframes f{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}.b{color:#f44;background:rgba(255,0,0,.05);padding:40px;border:2px solid #f44;border-radius:12px;box-shadow:0 0 15px rgba(255,0,0,.5);animation:f .6s ease-out;text-align:center}.i{font-size:3em;margin-bottom:10px;color:#f00}.t{font-weight:700;font-size:1.6em}</style>`;
+    a.innerHTML=`<div class="b"><div class="i"><i class="fa-solid fa-circle-xmark"></i></div><div class="t">Bypass Detected</div></div>`;
+  }else{
+    document.head.innerHTML+=`<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#000;color:#f00;overflow-y:auto;min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:20px}.background{position:fixed;width:100%;height:100%;top:0;left:0;z-index:-1}.d{position:absolute;background:#f00;border-radius:50%;opacity:0;animation:f 3s ease-in-out infinite}@keyframes f{0%,100%{opacity:0}50%{opacity:.5}}.k{text-align:center;background:rgba(255,255,255,.05);padding:40px;border-radius:12px;border:2px solid #f00;box-shadow:0 0 15px rgba(255,0,0,.7);max-width:400px;width:90%}.kt{font-size:2em;margin-bottom:20px}.kb{display:flex;align-items:center;justify-content:center;margin-bottom:20px}.ky{font-size:2.5em;letter-spacing:5px;margin-right:10px}.cb{background:#f00;color:#fff;border:none;padding:10px;border-radius:5px;cursor:pointer;font-size:1em}</style>`;
+    a.innerHTML=`<div class="background" id="background"></div><div class="k"><div class="kt">Akatsuki Hub Key</div><div class="kb"><div class="ky" id="dynamicKey">----</div><button class="cb" id="copyBtn"><i class="fa-regular fa-copy"></i></button></div></div>`;
+    let k='',c='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for(let i=0;i<4;i++)k+=c.charAt(Math.floor(Math.random()*c.length));
+    document.getElementById('dynamicKey').textContent=k;
+    const b=document.getElementById('copyBtn');
+    b.onclick=()=>{navigator.clipboard.writeText(k);b.textContent='Copied';setTimeout(()=>{b.innerHTML='<i class="fa-regular fa-copy"></i>'},2e3)};
+    const bg=document.getElementById('background');
+    for(let i=0;i<30;i++){
+      const e=document.createElement('div');
+      e.className='d';
+      const s=Math.random()*10+5;
+      e.style.width=s+'px';e.style.height=s+'px';e.style.top=100*Math.random()+'vh';e.style.left=100*Math.random()+'vw';e.style.animationDuration=2+3*Math.random()+'s';
+      bg.appendChild(e);
     }
-
-    if (!siteOK) {
-      document.head.innerHTML += `
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-        <style>
-          @keyframes fadeIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
-          }
-          .bypass-box {
-            text-align: center;
-            color: #ff4444;
-            background: rgba(255, 0, 0, 0.05);
-            padding: 40px;
-            border: 2px solid #ff4444;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(255,0,0,0.5);
-            animation: fadeIn 0.6s ease-out;
-          }
-          .bypass-icon {
-            font-size: 3em;
-            margin-bottom: 10px;
-            color: #ff0000;
-          }
-          .bypass-text {
-            font-size: 1.6em;
-            font-weight: bold;
-          }
-        </style>
-      `;
-      app.innerHTML = `
-        <div class="bypass-box">
-          <div class="bypass-icon"><i class="fa-solid fa-circle-xmark"></i></div>
-          <div class="bypass-text">Bypass Detected</div>
-        </div>
-      `;
-    } else {
-      document.head.innerHTML += `
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-        <style>
-          * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-          body {
-            background: #000;
-            color: #ff0000;
-            overflow-y: auto;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 20px;
-          }
-          .background {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-          }
-          .dot {
-            position: absolute;
-            background: #ff0000;
-            border-radius: 50%;
-            opacity: 0;
-            animation: fade 3s ease-in-out infinite;
-          }
-          @keyframes fade {
-            0%,100% { opacity: 0; }
-            50% { opacity: 0.5; }
-          }
-          .key-container {
-            text-align: center;
-            background: rgba(255,255,255,0.05);
-            padding: 40px;
-            border-radius: 12px;
-            border: 2px solid #ff0000;
-            box-shadow: 0 0 15px rgba(255,0,0,0.7);
-            max-width: 400px;
-            width: 90%;
-          }
-          .key-title {
-            font-size: 2em;
-            margin-bottom: 20px;
-          }
-          .key-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-          }
-          .key {
-            font-size: 2.5em;
-            letter-spacing: 5px;
-            margin-right: 10px;
-          }
-          .copy-btn {
-            background: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-          }
-        </style>
-      `;
-
-      app.innerHTML = `
-        <div class="background" id="background"></div>
-        <div class="key-container">
-          <div class="key-title">Akatsuki Hub Key</div>
-          <div class="key-box">
-            <div class="key" id="dynamicKey">----</div>
-            <button class="copy-btn" id="copyBtn"><i class="fa-regular fa-copy"></i></button>
-          </div>
-        </div>
-      `;
-
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      let key = '';
-      for (let i = 0; i < 4; i++) key += chars.charAt(Math.floor(Math.random() * chars.length));
-      document.getElementById('dynamicKey').textContent = key;
-
-      const btn = document.getElementById('copyBtn');
-      btn.addEventListener('click', () => {
-        navigator.clipboard.writeText(key);
-        btn.textContent = 'Copied';
-        setTimeout(() => {
-          btn.innerHTML = '<i class="fa-regular fa-copy"></i>';
-        }, 2000);
-      });
-
-      const bg = document.getElementById('background');
-      for (let i = 0; i < 30; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'dot';
-        const size = Math.random() * 10 + 5;
-        dot.style.width = size + 'px';
-        dot.style.height = size + 'px';
-        dot.style.top = Math.random() * 100 + 'vh';
-        dot.style.left = Math.random() * 100 + 'vw';
-        dot.style.animationDuration = Math.random() * 3 + 2 + 's';
-        bg.appendChild(dot);
-      }
-    }
-  </script>
-</body>
-</html>
+  }
+})();
+</script></body></html>
